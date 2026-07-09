@@ -52,7 +52,7 @@ export function FirstProduct() {
             </Reveal>
             <Reveal delay={0.45}>
               <ul className="mt-8 flex flex-wrap gap-2.5" aria-label="Highlights">
-                {["Low Noise", "150mm Sweep", "3-Year Warranty", "Made in India"].map(
+                {["ISI Marked", "7 Blades", "150mm Sweep", "Low Noise", "3-Year Warranty", "Made in India"].map(
                   (t) => (
                     <li
                       key={t}

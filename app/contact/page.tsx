@@ -64,7 +64,7 @@ export default function ContactPage() {
           <div className="space-y-10">
             <Reveal delay={0.1}>
               <div>
-                <h2 className="text-eyebrow text-navy/40">Direct lines</h2>
+                <h2 className="text-eyebrow text-navy/40">Customer Care</h2>
                 <ul className="mt-6 space-y-5">
                   <li>
                     <a
@@ -74,7 +74,7 @@ export default function ContactPage() {
                       <span className="block text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
                         Email
                       </span>
-                      <span className="mt-1 block text-xl font-extrabold tracking-tight text-navy transition-colors group-hover:text-blue md:text-2xl">
+                      <span className="mt-1 block text-lg font-extrabold tracking-tight text-navy transition-colors group-hover:text-blue md:text-xl">
                         {BRAND.email}
                       </span>
                     </a>
@@ -85,22 +85,45 @@ export default function ContactPage() {
                       className="group block"
                     >
                       <span className="block text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
-                        Phone
+                        Customer Care No.
                       </span>
-                      <span className="mt-1 block text-xl font-extrabold tracking-tight text-navy transition-colors group-hover:text-blue md:text-2xl">
+                      <span className="mt-1 block text-lg font-extrabold tracking-tight text-navy transition-colors group-hover:text-blue md:text-xl">
                         {BRAND.phone}
                       </span>
                     </a>
                   </li>
                   <li>
-                    <span className="block text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
-                      Registered Office
-                    </span>
-                    <span className="mt-1 block text-base font-semibold text-navy/70">
-                      LIBOR India · Kerala, India
-                    </span>
+                    <a href={`https://${BRAND.website}`} className="group block">
+                      <span className="block text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
+                        Website
+                      </span>
+                      <span className="mt-1 block text-lg font-extrabold tracking-tight text-navy transition-colors group-hover:text-blue md:text-xl">
+                        {BRAND.website}
+                      </span>
+                    </a>
                   </li>
                 </ul>
+                <div className="mt-9 space-y-6 border-t border-navy/10 pt-8">
+                  <div>
+                    <span className="block text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
+                      Marketed by
+                    </span>
+                    <p className="mt-1.5 text-sm font-bold text-navy">
+                      {BRAND.marketedBy.name}
+                    </p>
+                    <p className="mt-1 max-w-xs text-sm leading-relaxed text-navy/60">
+                      {BRAND.marketedBy.address}
+                    </p>
+                  </div>
+                  <div>
+                    <span className="block text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
+                      Manufactured at
+                    </span>
+                    <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-navy/60">
+                      {BRAND.manufacturedAt}
+                    </p>
+                  </div>
+                </div>
               </div>
             </Reveal>
 

@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/Reveal";
 const STORIES = [
   {
     title: "Quiet Performance",
-    body: "Because a home should sound like a home. Balanced blades, precision motor, near-silent air exchange.",
+    body: "Because a home should sound like a home. Seven balanced blades, a precision motor, near-silent air exchange.",
   },
   {
     title: "Thoughtful Design",

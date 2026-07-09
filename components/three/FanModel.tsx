@@ -4,12 +4,79 @@ import { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { RoundedBox } from "@react-three/drei";
 import * as THREE from "three";
+import { SVGLoader } from "three/examples/jsm/loaders/SVGLoader.js";
+import { mergeGeometries } from "three/examples/jsm/utils/BufferGeometryUtils.js";
+import { LOGO_SVG_STRING, LOGO_W } from "@/components/ui/logoPaths";
 
-const BLADES = 5;
+// world width of the small wordmark on the centre cap
+const LOGO_WIDTH = 0.6;
+const LOGO_SCALE = LOGO_WIDTH / LOGO_W;
+
+/** LIBOR wordmark extruded from the official SVG, centred at the origin. */
+function useLogoGeometry() {
+  return useMemo(() => {
+    const { paths } = new SVGLoader().parse(LOGO_SVG_STRING);
+    const geometries: THREE.BufferGeometry[] = [];
+    for (const path of paths) {
+      for (const shape of SVGLoader.createShapes(path)) {
+        geometries.push(
+          new THREE.ExtrudeGeometry(shape, {
+            depth: 8,
+            bevelEnabled: false,
+            curveSegments: 8,
+          })
+        );
+      }
+    }
+    const merged = mergeGeometries(geometries);
+    merged.center();
+    return merged;
+  }, []);
+}
+
+const BLADES = 7;
+const OPENING_R = 1.32; // radius of the circular grille opening
+const PLATE = 3.6; // square faceplate side
+
+/** Square faceplate with a circular cut-out, like the real Kamet body. */
+function useFacePlateGeometry() {
+  return useMemo(() => {
+    const s = PLATE / 2;
+    const r = 0.2;
+    const shape = new THREE.Shape();
+    shape.moveTo(-s + r, -s);
+    shape.lineTo(s - r, -s);
+    shape.quadraticCurveTo(s, -s, s, -s + r);
+    shape.lineTo(s, s - r);
+    shape.quadraticCurveTo(s, s, s - r, s);
+    shape.lineTo(-s + r, s);
+    shape.quadraticCurveTo(-s, s, -s, s - r);
+    shape.lineTo(-s, -s + r);
+    shape.quadraticCurveTo(-s, -s, -s + r, -s);
+
+    const hole = new THREE.Path();
+    hole.absarc(0, 0, OPENING_R, 0, Math.PI * 2, true);
+    shape.holes.push(hole);
+
+    return new THREE.ExtrudeGeometry(shape, {
+      depth: 0.14,
+      bevelEnabled: true,
+      bevelThickness: 0.02,
+      bevelSize: 0.02,
+      bevelSegments: 2,
+      curveSegments: 48,
+    });
+  }, []);
+}
+
+// horizontal louver bars: width follows the chord of the circular opening
+const LOUVER_YS = [-1.15, -0.92, -0.69, -0.46, -0.23, 0, 0.23, 0.46, 0.69, 0.92, 1.15];
+const chord = (y: number) => 2 * Math.sqrt(Math.max(OPENING_R ** 2 - y * y, 0)) * 0.97;
 
 /**
- * Procedural Kamet 150mm exhaust fan: white polymer frame, five pitched
- * blades, navy back shroud and the red LIBOR hub badge.
+ * Procedural Kamet 150mm exhaust fan, matched to the product photo:
+ * square white polymer body, louvered front grille with a rounded-square
+ * centre cap, and seven cream blades. Only the blades rotate.
  */
 export function FanModel({
   spinSpeed = 0.35,
@@ -20,14 +87,26 @@ export function FanModel({
 }) {
   const group = useRef<THREE.Group>(null);
   const rotor = useRef<THREE.Group>(null);
+  const facePlate = useFacePlateGeometry();
+  const logoGeometry = useLogoGeometry();
 
   const bodyMat = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: "#f7fafc",
-        roughness: 0.32,
+        color: "#f6f6f2",
+        roughness: 0.34,
         metalness: 0.02,
-        clearcoat: 0.6,
+        clearcoat: 0.55,
+        clearcoatRoughness: 0.35,
+      }),
+    []
+  );
+  const louverMat = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color: "#fbfbf8",
+        roughness: 0.3,
+        clearcoat: 0.5,
         clearcoatRoughness: 0.35,
       }),
     []
@@ -35,34 +114,38 @@ export function FanModel({
   const bladeMat = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: "#ffffff",
-        roughness: 0.25,
-        metalness: 0.03,
-        clearcoat: 0.8,
-        clearcoatRoughness: 0.25,
+        color: "#eee3c0",
+        roughness: 0.42,
+        metalness: 0.02,
+        clearcoat: 0.35,
+        clearcoatRoughness: 0.5,
       }),
     []
   );
-  const navyMat = useMemo(
+  const drumMat = useMemo(
     () =>
       new THREE.MeshStandardMaterial({
-        color: "#081d49",
-        roughness: 0.55,
-        metalness: 0.15,
+        color: "#cfc8b2",
+        roughness: 0.75,
+        metalness: 0.02,
+        side: THREE.BackSide,
       }),
     []
   );
   const redMat = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: "#f1272a",
+        color: "#ed1c24",
         roughness: 0.3,
         clearcoat: 0.7,
+        // SVG shapes can wind either way once flipped — render both faces
+        side: THREE.DoubleSide,
       }),
     []
   );
 
   useFrame((state, delta) => {
+    // only the blade rotor spins — body, grille and cap stay still
     if (rotor.current) rotor.current.rotation.z -= spinSpeed * delta;
     if (group.current && followPointer) {
       const { x, y } = state.pointer;
@@ -81,26 +164,30 @@ export function FanModel({
 
   return (
     <group ref={group}>
-      {/* back shroud */}
-      <mesh position={[0, 0, -0.28]} rotation={[Math.PI / 2, 0, 0]} material={navyMat}>
-        <cylinderGeometry args={[1.42, 1.3, 0.22, 64]} />
-      </mesh>
-      {/* outer frame ring */}
-      <mesh material={bodyMat}>
-        <torusGeometry args={[1.5, 0.16, 32, 96]} />
-      </mesh>
-      {/* front bezel */}
-      <mesh position={[0, 0, 0.06]} material={bodyMat}>
-        <torusGeometry args={[1.18, 0.055, 24, 96]} />
+      {/* square faceplate with circular opening */}
+      <mesh geometry={facePlate} material={bodyMat} />
+
+      {/* inner drum (seen through the grille) */}
+      <mesh position={[0, 0, -0.18]} rotation={[Math.PI / 2, 0, 0]} material={drumMat}>
+        <cylinderGeometry args={[OPENING_R, OPENING_R * 0.92, 0.72, 64, 1, true]} />
       </mesh>
 
-      {/* rotor: blades + hub */}
-      <group ref={rotor}>
+      {/* square back of the housing */}
+      <RoundedBox
+        args={[PLATE * 0.92, PLATE * 0.92, 0.12]}
+        radius={0.06}
+        smoothness={2}
+        position={[0, 0, -0.58]}
+        material={bodyMat}
+      />
+
+      {/* rotor: seven cream blades + rear hub (the only moving part) */}
+      <group ref={rotor} position={[0, 0, -0.2]}>
         {Array.from({ length: BLADES }).map((_, i) => (
           <group key={i} rotation={[0, 0, (i * Math.PI * 2) / BLADES]}>
-            <group position={[0.72, 0, 0]} rotation={[0, -0.5, 0.12]}>
+            <group position={[0.68, 0, 0]} rotation={[0, -0.48, 0.1]}>
               <RoundedBox
-                args={[1.02, 0.46, 0.05]}
+                args={[0.95, 0.52, 0.045]}
                 radius={0.024}
                 smoothness={3}
                 material={bladeMat}
@@ -108,31 +195,39 @@ export function FanModel({
             </group>
           </group>
         ))}
-        {/* hub */}
-        <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0.1]} material={bodyMat}>
-          <cylinderGeometry args={[0.34, 0.38, 0.24, 48]} />
-        </mesh>
-        {/* red LIBOR badge */}
-        <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0.23]} material={redMat}>
-          <cylinderGeometry args={[0.2, 0.2, 0.04, 48]} />
+        <mesh rotation={[Math.PI / 2, 0, 0]} material={bladeMat}>
+          <cylinderGeometry args={[0.4, 0.44, 0.3, 40]} />
         </mesh>
       </group>
 
-      {/* mounting studs on the frame */}
-      {[0, 1, 2, 3].map((i) => (
-        <mesh
-          key={i}
-          material={navyMat}
-          rotation={[Math.PI / 2, 0, 0]}
-          position={[
-            Math.cos((i * Math.PI) / 2 + Math.PI / 4) * 1.5,
-            Math.sin((i * Math.PI) / 2 + Math.PI / 4) * 1.5,
-            0.02,
-          ]}
-        >
-          <cylinderGeometry args={[0.06, 0.06, 0.1, 24]} />
+      {/* fixed louvered grille across the opening */}
+      <group position={[0, 0, 0.06]}>
+        {LOUVER_YS.map((y) => (
+          <mesh key={y} position={[0, y, 0]} material={louverMat}>
+            <boxGeometry args={[chord(y), 0.06, 0.05]} />
+          </mesh>
+        ))}
+        {/* central vertical spine */}
+        <mesh material={louverMat}>
+          <boxGeometry args={[0.07, OPENING_R * 2 * 0.99, 0.05]} />
         </mesh>
-      ))}
+      </group>
+
+      {/* fixed rounded-square centre cap */}
+      <RoundedBox
+        args={[1.12, 1.12, 0.1]}
+        radius={0.22}
+        smoothness={4}
+        position={[0, 0, 0.12]}
+        material={bodyMat}
+      />
+      {/* small red LIBOR wordmark on the cap (SVG y-axis points down — flip) */}
+      <mesh
+        geometry={logoGeometry}
+        material={redMat}
+        scale={[LOGO_SCALE, -LOGO_SCALE, LOGO_SCALE]}
+        position={[0, 0, 0.185]}
+      />
     </group>
   );
 }

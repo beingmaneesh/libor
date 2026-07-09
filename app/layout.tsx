@@ -69,8 +69,16 @@ const organizationJsonLd = {
   slogan: "Let's Live for Generations",
   description:
     "India's first sustainability-driven electrical distribution ecosystem.",
-  email: "hello@liborindia.com",
-  address: { "@type": "PostalAddress", addressCountry: "IN" },
+  email: "customercare@liborindia.com",
+  telephone: "+918089891230",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "No. 15/688-2, Near LBS Center, Chiyyaram",
+    addressLocality: "Thrissur",
+    addressRegion: "Kerala",
+    postalCode: "680026",
+    addressCountry: "IN",
+  },
 };
 
 export default function RootLayout({

@@ -45,7 +45,7 @@ export function Navbar() {
           }`}
         >
           <Link href="/" aria-label="LIBOR India — home" className="relative z-[60]">
-            <Logo className="text-lg" />
+            <Logo className="h-5 w-auto md:h-6" />
           </Link>
 
           <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">

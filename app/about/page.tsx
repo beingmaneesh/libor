@@ -259,6 +259,62 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+
+      {/* company details */}
+      <section className="bg-mist py-20 md:py-24" aria-label="Company details">
+        <div className="container-x">
+          <Reveal>
+            <p className="text-eyebrow text-blue">The Company</p>
+          </Reveal>
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
+            <Reveal delay={0.05}>
+              <div className="h-full rounded-3xl border border-navy/8 bg-white p-8">
+                <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
+                  Marketed by
+                </h2>
+                <p className="mt-3 font-bold text-navy">{BRAND.marketedBy.name}</p>
+                <p className="mt-2 text-sm leading-relaxed text-navy/60">
+                  {BRAND.marketedBy.address}
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.12}>
+              <div className="h-full rounded-3xl border border-navy/8 bg-white p-8">
+                <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
+                  Manufactured at
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-navy/60">
+                  {BRAND.manufacturedAt}
+                </p>
+              </div>
+            </Reveal>
+            <Reveal delay={0.19}>
+              <div className="h-full rounded-3xl border border-navy/8 bg-white p-8">
+                <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
+                  Customer Care
+                </h2>
+                <ul className="mt-3 space-y-1.5 text-sm font-semibold text-navy">
+                  <li>
+                    <a href={`tel:${BRAND.phone.replace(/\s/g, "")}`} className="hover:text-blue">
+                      {BRAND.phone}
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`mailto:${BRAND.email}`} className="hover:text-blue">
+                      {BRAND.email}
+                    </a>
+                  </li>
+                  <li>
+                    <a href={`https://${BRAND.website}`} className="hover:text-blue">
+                      {BRAND.website}
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

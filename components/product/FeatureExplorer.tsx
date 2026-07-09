@@ -1,20 +1,21 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Reveal } from "@/components/motion/Reveal";
-import { FanIllustration } from "@/components/ui/FanIllustration";
 import { PRODUCT } from "@/lib/content";
+import fanPhoto from "@/public/images/kamet-fan.png";
 
-// hotspot anchor positions on the illustration (percentages)
+// hotspot anchor positions on the product photo (percentages)
 const HOTSPOTS = [
-  { x: 50, y: 50 }, // low noise → hub
-  { x: 14, y: 30 }, // body → frame edge
-  { x: 68, y: 32 }, // high speed → blade
-  { x: 86, y: 62 }, // rust & shock proof → frame right
-  { x: 24, y: 82 }, // easy mount → stud
-  { x: 50, y: 12 }, // compact → top frame
-  { x: 74, y: 86 }, // made in india → lower right
+  { x: 50, y: 50 }, // low noise → centre cap
+  { x: 12, y: 20 }, // body → frame corner
+  { x: 68, y: 28 }, // high speed → blade
+  { x: 89, y: 58 }, // rust & shock proof → frame right
+  { x: 16, y: 84 }, // easy mount → lower frame
+  { x: 50, y: 8 }, // compact → top frame
+  { x: 76, y: 88 }, // made in india → lower right
 ];
 
 /** Interactive feature highlights — pick a feature, see it on the product. */
@@ -32,13 +33,19 @@ export function FeatureExplorer() {
         </Reveal>
 
         <div className="mt-16 grid items-center gap-14 lg:grid-cols-2">
-          {/* product with hotspots */}
+          {/* product photo with hotspots */}
           <div className="relative mx-auto w-full max-w-md">
             <div
               aria-hidden="true"
               className="absolute inset-0 scale-110 rounded-full bg-[radial-gradient(closest-side,rgba(18,61,138,0.12),transparent_72%)]"
             />
-            <FanIllustration className="relative w-full" spinning={false} />
+            <Image
+              src={fanPhoto}
+              alt="Kamet 150mm exhaust fan — square white body with louvered grille and seven blades"
+              placeholder="blur"
+              sizes="(min-width: 1024px) 28rem, 90vw"
+              className="relative w-full rounded-[2rem] border border-navy/8 shadow-[0_30px_70px_-35px_rgba(8,29,73,0.4)]"
+            />
             {HOTSPOTS.map((h, i) => (
               <button
                 key={i}
@@ -81,17 +88,34 @@ export function FeatureExplorer() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -14 }}
                   transition={{ duration: 0.35 }}
+                  className="flex items-start gap-6"
                 >
-                  <p className="text-xs font-extrabold tracking-[0.25em] text-red">
-                    {String(active + 1).padStart(2, "0")} /{" "}
-                    {String(PRODUCT.features.length).padStart(2, "0")}
-                  </p>
-                  <h3 className="mt-3 text-2xl font-bold tracking-tight text-navy">
-                    {PRODUCT.features[active].title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-navy/60 md:text-base">
-                    {PRODUCT.features[active].story}
-                  </p>
+                  <div className="min-w-0">
+                    <p className="text-xs font-extrabold tracking-[0.25em] text-red">
+                      {String(active + 1).padStart(2, "0")} /{" "}
+                      {String(PRODUCT.features.length).padStart(2, "0")}
+                    </p>
+                    <h3 className="mt-3 text-2xl font-bold tracking-tight text-navy">
+                      {PRODUCT.features[active].title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-navy/60 md:text-base">
+                      {PRODUCT.features[active].story}
+                    </p>
+                  </div>
+                  {PRODUCT.features[active].icon && (
+                    <div className="hidden shrink-0 items-center justify-center rounded-2xl bg-navy p-4 sm:flex">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={PRODUCT.features[active].icon}
+                        alt=""
+                        aria-hidden="true"
+                        width={64}
+                        height={90}
+                        loading="lazy"
+                        className="h-20 w-auto"
+                      />
+                    </div>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>

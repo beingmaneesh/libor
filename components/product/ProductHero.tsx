@@ -37,13 +37,31 @@ export function ProductHero() {
           </div>
           <Reveal delay={0.35}>
             <p className="mt-8 max-w-md text-base leading-relaxed text-white/60">
-              Named after a Himalayan peak, built for Indian homes. Quiet,
-              compact and rust-proof — and the first product in a circular
-              electrical ecosystem.
+              Named after a Himalayan peak, built for Indian homes. Seven
+              balanced blades, whisper-quiet and rust-proof — the first
+              product in a circular electrical ecosystem.
             </p>
           </Reveal>
+          <Reveal delay={0.45}>
+            <div className="mt-8 flex items-center gap-4">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/icons/isi-mark.svg"
+                alt="ISI mark"
+                width={46}
+                height={50}
+                className="h-12 w-auto"
+              />
+              <p className="text-xs font-bold leading-relaxed tracking-wide text-white/60">
+                BIS Certified · ISI Marked
+                <span className="block text-white/40">
+                  IS:302-2-80:2017 · CM/L 8100188709
+                </span>
+              </p>
+            </div>
+          </Reveal>
           <Reveal delay={0.5}>
-            <dl className="mt-10 grid max-w-md grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/12 bg-white/12">
+            <dl className="mt-8 grid max-w-md grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/12 bg-white/12">
               {[
                 ["150mm", "Sweep"],
                 ["3 yrs", "Warranty"],

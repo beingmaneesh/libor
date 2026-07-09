@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import { ProductHero } from "@/components/product/ProductHero";
 import { FeatureExplorer } from "@/components/product/FeatureExplorer";
+import { BadgeStrip } from "@/components/product/BadgeStrip";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { CTA } from "@/components/ui/Button";
 import { FanIllustration } from "@/components/ui/FanIllustration";
+import { Logo } from "@/components/ui/Logo";
 import { PRODUCT, FUTURE_CATEGORIES } from "@/lib/content";
+import fanPhoto from "@/public/images/kamet-fan.png";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Kamet 150mm Exhaust Fan — Where Our Journey Begins",
@@ -26,13 +30,19 @@ const productJsonLd = {
     { "@type": "PropertyValue", name: "Voltage", value: "220–240V" },
     { "@type": "PropertyValue", name: "Frequency", value: "50Hz" },
     { "@type": "PropertyValue", name: "Sweep", value: "150mm" },
+    { "@type": "PropertyValue", name: "Blades", value: "7" },
+    {
+      "@type": "PropertyValue",
+      name: "Certification",
+      value: "ISI Marked · IS:302-2-80:2017 · CM/L 8100188709",
+    },
   ],
 };
 
 const GALLERY = [
   {
     title: "The blade profile",
-    caption: "Five balanced blades tuned for airflow over noise.",
+    caption: "Seven balanced blades tuned for airflow over noise.",
     surface: "bg-[linear-gradient(150deg,#eef3f9_0%,#c9d6e6_100%)]",
     dark: false,
   },
@@ -97,6 +107,8 @@ export default function ProductsPage() {
         </div>
       </section>
 
+      <BadgeStrip />
+
       <FeatureExplorer />
 
       {/* specifications + warranty */}
@@ -158,9 +170,20 @@ export default function ProductsPage() {
                 aria-hidden="true"
                 className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-[radial-gradient(closest-side,rgba(120,160,255,0.3),transparent_70%)] blur-xl"
               />
-              <div className="relative">
-                <p className="text-eyebrow text-white/40">Warranty</p>
-                <p className="text-display mt-6 text-7xl md:text-8xl">
+              <div className="relative mb-5">
+                <div className="flex items-start justify-between gap-6">
+                  <p className="text-eyebrow text-white/40">Warranty</p>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/icons/warranty-3-years.svg"
+                    alt="3 year warranty badge"
+                    width={58}
+                    height={90}
+                    loading="lazy"
+                    className="h-20 w-auto"
+                  />
+                </div>
+                <p className="text-display mt-2 text-7xl md:text-8xl">
                   3<span className="serif-accent text-4xl text-green md:text-5xl"> years</span>
                 </p>
                 <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/60">
@@ -169,6 +192,14 @@ export default function ProductsPage() {
                   no fine print gymnastics.
                 </p>
               </div>
+
+              <Image
+              src={fanPhoto}
+              alt="Kamet 150mm exhaust fan — square white body with louvered grille and seven blades"
+              placeholder="blur"
+              sizes="(min-width: 300px) 8rem, 20vw"
+              className="relative border border-navy/8 shadow-[0_30px_70px_-35px_rgba(8,29,73,0.4)]"
+            />
               <ul className="relative mt-10 space-y-3 text-sm font-semibold text-white/75">
                 {[
                   "Doorstep replacement via dealer network",
@@ -255,9 +286,7 @@ export default function ProductsPage() {
               />
               <div className="grain relative flex h-full flex-col overflow-hidden rounded-2xl bg-[linear-gradient(155deg,#123d8a_0%,#081d49_75%)] p-8 shadow-[0_40px_80px_-30px_rgba(8,29,73,0.5)]">
                 <div className="flex items-center justify-between">
-                  <span className="text-xl font-extrabold tracking-tight text-white">
-                    LIBOR<span className="text-red">.</span>
-                  </span>
+                  <Logo light className="h-6 w-auto" />
                   <span className="rounded-full border border-green/50 px-3 py-1 text-[0.6rem] font-bold tracking-widest text-green">
                     RECYCLABLE
                   </span>
