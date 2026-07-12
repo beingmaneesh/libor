@@ -38,7 +38,7 @@ const SLIDES: Slide[] = [
       </span>,
     ],
     sub: "Every electrical decision today creates tomorrow's world.",
-    cta: { label: "Our Story", href: "/about" },
+   cta: { label: "Explore Our Vision", href: "#manifesto" },
     Scene: GenerationsScene,
   },
   {
@@ -51,7 +51,7 @@ const SLIDES: Slide[] = [
       </span>,
     ],
     sub: BRAND.positioning,
-    cta: { label: "Explore Our Vision", href: "#manifesto" },
+     cta: { label: "Our Story", href: "/about" },
     Scene: FutureOfIndiaScene,
   },
   {
