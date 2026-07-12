@@ -24,7 +24,7 @@ export function FutureVision() {
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(90%_60%_at_50%_110%,#0d2c66_0%,transparent_60%)]"
+        className="absolute inset-0 bg-[radial-gradient(90%_60%_at_50%_110%,#1946c8_0%,transparent_60%)]"
       />
       <div className="container-x relative">
         <Reveal>

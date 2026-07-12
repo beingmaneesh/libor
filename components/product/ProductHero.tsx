@@ -16,7 +16,7 @@ export function ProductHero() {
     <section className="dark-section grain relative flex min-h-svh flex-col overflow-hidden bg-navy-deep text-white">
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(110%_90%_at_50%_-10%,#0d2c66_0%,#081d49_48%,#04102e_100%)]"
+        className="absolute inset-0 bg-[radial-gradient(110%_90%_at_50%_-10%,#1946c8_0%,#0b2c8f_48%,#071f63_100%)]"
       />
       <div className="container-x relative z-10 grid flex-1 items-center gap-10 pb-20 pt-36 lg:grid-cols-[1.1fr_1fr] lg:gap-6">
         <div className="order-2 lg:order-1">

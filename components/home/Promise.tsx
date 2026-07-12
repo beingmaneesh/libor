@@ -10,7 +10,7 @@ const PANELS = [
     line: "you can trust.",
     body: "Materials chosen for decades, not seasons. Every Kamet is tested beyond standards and backed by a 3-year warranty.",
     surface:
-      "bg-[linear-gradient(160deg,#123d8a_0%,#081d49_60%,#04102e_100%)]",
+      "bg-[linear-gradient(160deg,#2151e0_0%,#0b2c8f_60%,#071f63_100%)]",
     glow: "bg-[radial-gradient(closest-side,rgba(120,160,255,0.4),transparent_70%)]",
   },
   {

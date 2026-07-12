@@ -60,7 +60,7 @@ export default function AboutPage() {
       <section className="dark-section grain relative flex min-h-[92svh] items-end overflow-hidden bg-navy-deep pb-24 pt-40 text-white">
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(110%_80%_at_80%_0%,#0d2c66_0%,#081d49_50%,#04102e_100%)]"
+          className="absolute inset-0 bg-[radial-gradient(110%_80%_at_80%_0%,#1946c8_0%,#0b2c8f_50%,#071f63_100%)]"
         />
         <div
           aria-hidden="true"

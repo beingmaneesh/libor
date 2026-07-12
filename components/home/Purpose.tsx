@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollHint } from "@/components/ui/ScrollHint";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,6 +25,7 @@ export function Purpose() {
       const steps = gsap.utils.toArray<HTMLElement>("[data-step]");
       if (reduced) {
         gsap.set(steps, { autoAlpha: 1, scale: 1, filter: "none" });
+        gsap.set("[data-hint]", { autoAlpha: 0 });
         return;
       }
       gsap.set(steps, { autoAlpha: 0, scale: 0.94, filter: "blur(8px)" });
@@ -32,9 +34,17 @@ export function Purpose() {
         scrollTrigger: {
           trigger: section.current,
           start: "top top",
-          end: `+=${STEPS.length * 80}%`,
+          end: `+=${STEPS.length * 70}%`,
           pin: true,
           scrub: 0.6,
+          onUpdate: (self) => {
+            gsap.set("[data-hint-fill]", { scaleX: self.progress });
+            gsap.to("[data-hint]", {
+              autoAlpha: self.progress > 0.95 ? 0 : 1,
+              duration: 0.3,
+              overwrite: "auto",
+            });
+          },
         },
       });
 
@@ -94,6 +104,8 @@ export function Purpose() {
           ))}
         </div>
       </div>
+
+      <ScrollHint dark />
     </section>
   );
 }

@@ -49,7 +49,7 @@ const GALLERY = [
   {
     title: "The polymer shell",
     caption: "High-grade plastic. Rust-proof, shock-proof, recyclable.",
-    surface: "bg-[linear-gradient(150deg,#123d8a_0%,#081d49_100%)]",
+    surface: "bg-[linear-gradient(150deg,#2151e0_0%,#0b2c8f_100%)]",
     dark: true,
   },
   {
@@ -220,7 +220,7 @@ export default function ProductsPage() {
       {/* Return & Earn */}
       <section
         id="return-earn"
-        className="dark-section grain relative overflow-hidden bg-[linear-gradient(160deg,#12341a_0%,#0d2413_60%,#04102e_140%)] py-28 text-white md:py-40"
+        className="dark-section grain relative overflow-hidden bg-[linear-gradient(160deg,#12341a_0%,#0d2413_60%,#071f63_140%)] py-28 text-white md:py-40"
         aria-label="Return and Earn initiative"
       >
         <div
@@ -284,7 +284,7 @@ export default function ProductsPage() {
                 aria-hidden="true"
                 className="absolute inset-x-8 bottom-0 h-8 rounded-[100%] bg-navy/15 blur-xl"
               />
-              <div className="grain relative flex h-full flex-col overflow-hidden rounded-2xl bg-[linear-gradient(155deg,#123d8a_0%,#081d49_75%)] p-8 shadow-[0_40px_80px_-30px_rgba(8,29,73,0.5)]">
+              <div className="grain relative flex h-full flex-col overflow-hidden rounded-2xl bg-[linear-gradient(155deg,#2151e0_0%,#0b2c8f_75%)] p-8 shadow-[0_40px_80px_-30px_rgba(8,29,73,0.5)]">
                 <div className="flex items-center justify-between">
                   <Logo light className="h-6 w-auto" />
                   <span className="rounded-full border border-green/50 px-3 py-1 text-[0.6rem] font-bold tracking-widest text-green">

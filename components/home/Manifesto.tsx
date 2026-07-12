@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollHint } from "@/components/ui/ScrollHint";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +24,7 @@ export function Manifesto() {
       const lines = gsap.utils.toArray<HTMLElement>("[data-line]");
       if (reduced) {
         gsap.set(lines, { autoAlpha: 1, y: 0 });
+        gsap.set("[data-hint]", { autoAlpha: 0 });
         return;
       }
       gsap.set(lines, { autoAlpha: 0, y: 60 });
@@ -31,9 +33,18 @@ export function Manifesto() {
         scrollTrigger: {
           trigger: section.current,
           start: "top top",
-          end: `+=${LINES.length * 90}%`,
+          end: `+=${LINES.length * 70}%`,
           pin: true,
           scrub: 0.6,
+          onUpdate: (self) => {
+            // live progress + fade the cue away as the story completes
+            gsap.set("[data-hint-fill]", { scaleX: self.progress });
+            gsap.to("[data-hint]", {
+              autoAlpha: self.progress > 0.95 ? 0 : 1,
+              duration: 0.3,
+              overwrite: "auto",
+            });
+          },
         },
       });
 
@@ -86,6 +97,8 @@ export function Manifesto() {
           ))}
         </div>
       </div>
+
+      <ScrollHint />
     </section>
   );
 }

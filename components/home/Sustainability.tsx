@@ -27,7 +27,7 @@ export function Sustainability() {
   return (
     <section
       id="sustainability"
-      className="dark-section grain relative overflow-hidden bg-[linear-gradient(170deg,#0d2413_0%,#12341a_50%,#081d49_130%)] py-28 text-white md:py-40"
+      className="dark-section grain relative overflow-hidden bg-[linear-gradient(170deg,#0d2413_0%,#12341a_50%,#0b2c8f_130%)] py-28 text-white md:py-40"
       aria-label="Circular economy"
     >
       <div

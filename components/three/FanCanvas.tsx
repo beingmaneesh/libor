@@ -78,7 +78,7 @@ export function ProductFanCanvas() {
           gl={{ antialias: true, alpha: true }}
         >
           <Suspense fallback={null}>
-            <SceneLights rim="#123d8a" />
+            <SceneLights rim="#2151e0" />
             <PresentationControls
               global
               snap

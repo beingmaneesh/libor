@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  /* LIBOR brand palette */
-  --color-blue: #123d8a;
-  --color-navy: #081d49;
-  --color-navy-deep: #04102e;
+  /* LIBOR brand palette — bright royal blue family */
+  --color-blue: #2151e0;
+  --color-navy: #0b2c8f;
+  --color-navy-deep: #071f63;
   --color-red: #f1272a;
   --color-green: #52b44b;
   --color-green-deep: #2e7d33;
@@ -150,6 +150,42 @@ body {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* hero slider autoplay progress — drives slide advance via onAnimationEnd */
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* bobbing chevron for pinned-section scroll cues */
+@keyframes hint-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 0.35;
+  }
+}
+.hint-bob {
+  animation: hint-bob 1.6s ease-in-out infinite;
+}
+
+/* slow drift for hero scenery (Ken Burns) — kept subtle */
+@keyframes hero-drift {
+  from {
+    transform: scale(1.005);
+  }
+  to {
+    transform: scale(1.035);
   }
 }
 

@@ -4,6 +4,7 @@ import "./globals.css";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { BackToTop } from "@/components/ui/BackToTop";
 
 const manrope = Manrope({
   variable: "--font-manrope",
@@ -56,7 +57,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#081D49",
+  themeColor: "#0b2c8f",
   width: "device-width",
   initialScale: 1,
 };
@@ -103,6 +104,7 @@ export default function RootLayout({
           <Navbar />
           <main id="main">{children}</main>
           <Footer />
+          <BackToTop />
         </SmoothScroll>
       </body>
     </html>

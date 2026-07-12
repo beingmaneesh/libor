@@ -36,14 +36,14 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="container-x relative z-[60]">
-        <div
-          className={`mt-4 flex items-center justify-between rounded-full border px-5 py-3 transition-all duration-500 md:px-7 ${
-            scrolled || open
-              ? "border-navy/10 bg-white/85 shadow-[0_18px_50px_-24px_rgba(8,29,73,0.35)] backdrop-blur-xl"
-              : "border-white/0 bg-white/60 backdrop-blur-md"
-          }`}
-        >
+      <div
+        className={`relative z-[60] border-b bg-white/95 backdrop-blur-xl transition-shadow duration-500 ${
+          scrolled || open
+            ? "border-navy/10 shadow-[0_14px_40px_-22px_rgba(7,31,99,0.4)]"
+            : "border-navy/8 shadow-none"
+        }`}
+      >
+        <div className="container-x flex items-center justify-between py-4">
           <Link href="/" aria-label="LIBOR India — home" className="relative z-[60]">
             <Logo className="h-5 w-auto md:h-6" />
           </Link>

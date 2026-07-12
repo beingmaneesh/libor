@@ -17,7 +17,7 @@ export default function ContactPage() {
       <section className="dark-section grain relative overflow-hidden bg-navy-deep pb-24 pt-44 text-white">
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(110%_90%_at_20%_0%,#0d2c66_0%,#081d49_50%,#04102e_100%)]"
+          className="absolute inset-0 bg-[radial-gradient(110%_90%_at_20%_0%,#1946c8_0%,#0b2c8f_50%,#071f63_100%)]"
         />
         <div className="container-x relative">
           <Reveal>
