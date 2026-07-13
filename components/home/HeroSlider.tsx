@@ -191,8 +191,8 @@ export function HeroSlider() {
             </motion.p>
             <h1
               className={`text-display mt-6 ${
-                slide.titleClass ?? "text-5xl sm:text-6xl md:text-7xl lg:text-8xl"
-              }`}
+  slide.titleClass ?? "text-4xl sm:text-4xl md:text-5xl lg:text-6xl"
+}`}
             >
               {slide.title.map((line, i) => (
                 <span key={i} className="block overflow-hidden pb-[0.08em]">
@@ -213,7 +213,7 @@ export function HeroSlider() {
                 hidden: { opacity: 0, y: 26 },
                 show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: EASE } },
               }}
-              className={`mt-7 max-w-xl text-base font-medium leading-relaxed md:text-xl ${
+              className={`mt-6 max-w-xl text-base font-medium leading-relaxed md:text-base  ${
                 slide.light ? "text-ink/65" : "text-white/75"
               }`}
             >

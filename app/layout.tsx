@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Instrument_Serif } from "next/font/google";
+import { Archivo, Manrope, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 import { Navbar } from "@/components/layout/Navbar";
@@ -8,6 +8,13 @@ import { BackToTop } from "@/components/ui/BackToTop";
 
 const manrope = Manrope({
   variable: "--font-manrope",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// display face for headlines — corporate, sturdy, highly legible
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
   display: "swap",
 });
@@ -88,7 +95,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${instrument.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${archivo.variable} ${instrument.variable}`}>
       <body className="antialiased">
         <script
           type="application/ld+json"

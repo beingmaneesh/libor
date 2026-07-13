@@ -12,6 +12,7 @@
   --color-ink: #0a1430;
 
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-instrument), Georgia, "Times New Roman", serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -106,8 +107,9 @@ body {
 
 /* Typography helpers */
 .text-display {
-  letter-spacing: -0.035em;
-  line-height: 0.98;
+  font-family: var(--font-display);
+  letter-spacing: -0.025em;
+  line-height: 1.02;
   font-weight: 700;
 }
 
