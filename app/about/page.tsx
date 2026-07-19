@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LineReveal, Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { PageHero } from "@/components/layout/PageHero";
 import { CTA } from "@/components/ui/Button";
 import { BRAND, MISSION_PILLARS } from "@/lib/content";
 
@@ -56,44 +57,18 @@ const TIMELINE = [
 export default function AboutPage() {
   return (
     <>
-      {/* hero */}
-      <section className="dark-section grain relative flex min-h-[92svh] items-end overflow-hidden bg-navy-deep pb-24 pt-40 text-white">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(110%_80%_at_80%_0%,#1946c8_0%,#0b2c8f_50%,#071f63_100%)]"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute -right-32 top-24 h-[55vmin] w-[55vmin] rounded-full border border-white/8 animate-spin-slow"
-        >
-          <span className="absolute left-1/2 top-0 h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-green shadow-[0_0_18px_4px_rgba(82,180,75,0.5)]" />
-        </div>
-        <div className="container-x relative">
-          <Reveal>
-            <p className="text-eyebrow text-green">About LIBOR</p>
-          </Reveal>
-          <div className="mt-8 max-w-5xl">
-            <LineReveal
-              as="h1"
-              className="text-display text-4xl sm:text-6xl md:text-7xl"
-              lines={[
-                <span key="1">We are not an</span>,
-                <span key="2">exhaust fan company.</span>,
-                <span key="l" className="serif-accent text-green">
-                  We just started with one.
-                </span>,
-              ]}
-            />
-          </div>
-          <Reveal delay={0.5}>
-            <p className="mt-10 max-w-xl text-base leading-relaxed text-white/60">
-              LIBOR is a sustainability-driven electrical brand — an ecosystem
-              designed so that every product we make, sell and take back leaves
-              India a little better than we found it.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About LIBOR"
+        headingClass="text-display text-4xl sm:text-5xl md:text-6xl"
+        lines={[
+          <span key="1">We are not an</span>,
+          <span key="2">exhaust fan company.</span>,
+          <span key="l" className="serif-accent text-green">
+            We just started with one.
+          </span>,
+        ]}
+        sub="LIBOR is a sustainability-driven electrical brand — an ecosystem designed so that every product we make, sell and take back leaves India a little better than we found it."
+      />
 
       {/* the question we started with */}
       <section className="bg-white py-28 md:py-40">

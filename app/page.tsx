@@ -5,7 +5,7 @@ import { Vision } from "@/components/home/Vision";
 import { Mission } from "@/components/home/Mission";
 import { Purpose } from "@/components/home/Purpose";
 import { Promise as BrandPromise } from "@/components/home/Promise";
-import { FirstProduct } from "@/components/home/FirstProduct";
+import { Range } from "@/components/home/Range";
 import { WhyFan } from "@/components/home/WhyFan";
 import { Sustainability } from "@/components/home/Sustainability";
 import { Dealers } from "@/components/home/Dealers";
@@ -28,7 +28,7 @@ export default function HomePage() {
       <Mission />
       <Purpose />
       <BrandPromise />
-      <FirstProduct />
+      <Range />
       <WhyFan />
       <Sustainability />
       <Dealers />

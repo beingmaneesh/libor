@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { LineReveal, Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { PageHero } from "@/components/layout/PageHero";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { BRAND, DEALER_POINTS } from "@/lib/content";
 
@@ -13,36 +14,16 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      {/* hero */}
-      <section className="dark-section grain relative overflow-hidden bg-navy-deep pb-24 pt-44 text-white">
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-[radial-gradient(110%_90%_at_20%_0%,#1946c8_0%,#0b2c8f_50%,#071f63_100%)]"
-        />
-        <div className="container-x relative">
-          <Reveal>
-            <p className="text-eyebrow text-green">Contact</p>
-          </Reveal>
-          <div className="mt-8 max-w-4xl">
-            <LineReveal
-              as="h1"
-              className="text-display text-5xl sm:text-6xl md:text-7xl"
-              lines={[
-                <span key="1">Every generation</span>,
-                <span key="s" className="serif-accent text-green">
-                  starts with a conversation.
-                </span>,
-              ]}
-            />
-          </div>
-          <Reveal delay={0.4}>
-            <p className="mt-8 max-w-lg text-base leading-relaxed text-white/60">
-              A question about the Kamet, a partnership proposal, or an old fan
-              to return — we answer everything, usually within a working day.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Contact"
+        lines={[
+          <span key="1">Every generation</span>,
+          <span key="s" className="serif-accent text-green">
+            starts with a conversation.
+          </span>,
+        ]}
+        sub="A question about a product, a partnership proposal, or an old fan to return — we answer everything, usually within a working day."
+      />
 
       {/* form + details */}
       <section className="bg-mist py-24 md:py-32">
