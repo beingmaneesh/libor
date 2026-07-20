@@ -29,6 +29,8 @@ export function Purpose() {
         return;
       }
       gsap.set(steps, { autoAlpha: 0, scale: 0.94, filter: "blur(8px)" });
+      // first line is visible before any scrolling — the section never looks empty
+      gsap.set(steps[0], { autoAlpha: 1, scale: 1, filter: "blur(0px)" });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -48,24 +50,19 @@ export function Purpose() {
         },
       });
 
-      steps.forEach((step, i) => {
-        tl.to(step, {
-          autoAlpha: 1,
-          scale: 1,
-          filter: "blur(0px)",
-          duration: 1,
-          ease: "power2.out",
-        });
-        if (i < steps.length - 1) {
-          tl.to(step, {
-            autoAlpha: 0,
-            scale: 1.05,
-            filter: "blur(8px)",
-            duration: 1,
-            ease: "power2.in",
-          }, "+=0.5");
-        }
-      });
+      // scroll swaps each line for the next; the first already shows
+      for (let i = 1; i < steps.length; i++) {
+        tl.to(
+          steps[i - 1],
+          { autoAlpha: 0, scale: 1.05, filter: "blur(8px)", duration: 1, ease: "power2.in" },
+          "+=0.5"
+        );
+        tl.to(
+          steps[i],
+          { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 1, ease: "power2.out" },
+          "<0.3"
+        );
+      }
       // gentle green bloom on the final line
       tl.to("[data-bloom]", { opacity: 1, duration: 1.4 }, "<");
     }, section);

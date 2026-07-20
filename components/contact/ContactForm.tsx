@@ -83,7 +83,7 @@ export function ContactForm({ defaultTopic = "general" }: { defaultTopic?: strin
               <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Enquiry topic">
                 {[
                   ["general", "General"],
-                  ["product", "The Kamet Fan"],
+                  // ["product", "The Kamet Fan"],
                   ["dealer", "Becoming a Dealer"],
                 ].map(([value, label]) => (
                   <button

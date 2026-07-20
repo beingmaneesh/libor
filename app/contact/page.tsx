@@ -87,37 +87,38 @@ export default function ContactPage() {
                 <div className="mt-9 space-y-6 border-t border-navy/10 pt-8">
                   <div>
                     <span className="block text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
-                      Marketed by
+                      Address
                     </span>
-                    <p className="mt-1.5 text-sm font-bold text-navy">
+                    {/* <p className="mt-1.5 text-sm font-bold text-navy">
                       {BRAND.marketedBy.name}
-                    </p>
+                    </p> */}
                     <p className="mt-1 max-w-xs text-sm leading-relaxed text-navy/60">
                       {BRAND.marketedBy.address}
                     </p>
                   </div>
-                  <div>
+                  {/* <div>
                     <span className="block text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
                       Manufactured at
                     </span>
                     <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-navy/60">
                       {BRAND.manufacturedAt}
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </Reveal>
 
             <Reveal delay={0.2}>
               <div className="grain relative overflow-hidden rounded-3xl bg-green-deep p-8 text-white">
-                <p className="text-eyebrow text-white/50">Return &amp; Earn</p>
+                <p className="text-eyebrow text-white/50">Return · Reward · Recycle</p>
                 <p className="mt-4 text-lg font-bold leading-snug">
-                  Have an old fan? Any brand, any age — bring it in and earn
-                  ₹20 while it re-enters the loop.
+                  Return the packaging of any LIBOR product to an authorized
+                  dealer and earn ₹20 — every pack re-enters the loop instead of
+                  a landfill.
                 </p>
                 <p className="mt-3 text-sm text-white/60">
                   Mention &ldquo;Return &amp; Earn&rdquo; in your message and
-                  we&rsquo;ll point you to the nearest partner.
+                  we&rsquo;ll point you to the nearest authorized dealer.
                 </p>
               </div>
             </Reveal>

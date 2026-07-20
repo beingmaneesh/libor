@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { LineReveal, Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { PageHero } from "@/components/layout/PageHero";
+import { OurStory } from "@/components/about/OurStory";
 import { CTA } from "@/components/ui/Button";
 import { BRAND, MISSION_PILLARS } from "@/lib/content";
 
@@ -69,6 +70,8 @@ export default function AboutPage() {
         ]}
         sub="LIBOR is a sustainability-driven electrical brand — an ecosystem designed so that every product we make, sell and take back leaves India a little better than we found it."
       />
+
+      <OurStory />
 
       {/* the question we started with */}
       <section className="bg-white py-28 md:py-40">
@@ -186,7 +189,7 @@ export default function AboutPage() {
       </section>
 
       {/* roadmap timeline */}
-      <section className="dark-section grain relative overflow-hidden bg-navy-deep py-28 text-white md:py-40">
+      {/* <section className="dark-section grain relative overflow-hidden bg-navy-deep py-28 text-white md:py-40">
         <div className="container-x">
           <Reveal>
             <p className="text-eyebrow text-white/40">The Journey</p>
@@ -233,10 +236,10 @@ export default function AboutPage() {
             </div>
           </Reveal>
         </div>
-      </section>
+      </section> */}
 
       {/* company details */}
-      <section className="bg-mist py-20 md:py-24" aria-label="Company details">
+      {/* <section className="bg-mist py-20 md:py-24" aria-label="Company details">
         <div className="container-x">
           <Reveal>
             <p className="text-eyebrow text-blue">The Company</p>
@@ -289,7 +292,7 @@ export default function AboutPage() {
             </Reveal>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }

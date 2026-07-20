@@ -31,7 +31,7 @@ export function Closing() {
         <Reveal delay={0.7}>
           <div className="mt-14 flex flex-wrap items-center justify-center gap-4">
             <CTA href="/products" variant="light">
-              See the First Product
+              See Products
             </CTA>
             <CTA href="/contact" variant="outline">
               Join the Journey

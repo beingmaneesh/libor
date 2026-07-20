@@ -125,12 +125,12 @@ export const CIRCULAR_STAGES = [
     body: "Years of reliable, energy-conscious service in your home.",
   },
   {
-    title: "Responsible Disposal",
-    body: "Return your old fan to any LIBOR partner — and earn ₹20 back.",
+    title: "Return & Reward",
+    body: "Return LIBOR packaging to any authorized dealer — and earn ₹20 back.",
   },
   {
     title: "Recycling",
-    body: "Recovered materials are processed, not landfilled.",
+    body: "Recovered packaging and materials are processed, not landfilled.",
   },
   {
     title: "Future Products",

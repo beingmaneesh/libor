@@ -36,7 +36,7 @@ export function Footer() {
               className="mt-6 h-12 w-auto"
             />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/45">
-              Better products, stronger partnerships, a circular future.
+              Sustainable products, stronger partnerships, a circular future.
             </p>
           </div>
 
@@ -90,7 +90,15 @@ export function Footer() {
             <div className="mt-8 inline-flex items-center gap-2 rounded-full border border-green/30 bg-green/10 px-4 py-2">
               <span className="h-1.5 w-1.5 rounded-full bg-green" aria-hidden="true" />
               <span className="text-xs font-bold tracking-wide text-green">
-                Return &amp; Earn ₹20 on every old fan
+                Return  
+              </span>
+              <span className="h-1.5 w-1.5 rounded-full bg-green" aria-hidden="true" />
+              <span className="text-xs font-bold tracking-wide text-green">
+                Reward 
+              </span>
+              <span className="h-1.5 w-1.5 rounded-full bg-green" aria-hidden="true" />
+              <span className="text-xs font-bold tracking-wide text-green">
+                 Recycle
               </span>
             </div>
           </div>

@@ -189,9 +189,10 @@ export function Sustainability() {
                 ₹20
               </span>
               <p className="text-sm leading-relaxed text-white/75">
-                <strong className="text-white">Return &amp; Earn.</strong> Bring
-                back any old fan to a LIBOR partner and earn ₹20 — while we make
-                sure it never reaches a landfill.
+                <strong className="text-white">Return · Reward · Recycle.</strong>{" "}
+                Return the packaging of any LIBOR product to an authorized
+                dealer, earn ₹20, and watch it re-enter the loop — never a
+                landfill.
               </p>
             </div>
           </div>

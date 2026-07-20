@@ -28,6 +28,8 @@ export function Manifesto() {
         return;
       }
       gsap.set(lines, { autoAlpha: 0, y: 60 });
+      // first line is visible before any scrolling — the section never looks empty
+      gsap.set(lines[0], { autoAlpha: 1, y: 0 });
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -48,12 +50,11 @@ export function Manifesto() {
         },
       });
 
-      lines.forEach((line, i) => {
-        tl.to(line, { autoAlpha: 1, y: 0, duration: 1, ease: "power3.out" });
-        if (i < lines.length - 1) {
-          tl.to(line, { autoAlpha: 0, y: -60, duration: 1, ease: "power3.in" }, "+=0.6");
-        }
-      });
+      // scroll swaps each line for the next; the first already shows
+      for (let i = 1; i < lines.length; i++) {
+        tl.to(lines[i - 1], { autoAlpha: 0, y: -60, duration: 1, ease: "power3.in" }, "+=0.6");
+        tl.to(lines[i], { autoAlpha: 1, y: 0, duration: 1, ease: "power3.out" }, "<0.35");
+      }
     }, section);
     return () => ctx.revert();
   }, []);

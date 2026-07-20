@@ -155,6 +155,16 @@ export const PRODUCTS: Product[] = [
     image: "/images/products/casa-photo.png",
     sheet: "/images/products/casa.png",
     isi: false,
+
+    specs: [
+          { label: "Model", value: "CASA" },
+          { label: "Power (W)", value: "6" },
+          { label: "Voltage (V)", value: "230" },
+          { label: "Speed", value: "2200 RPM" },
+          { label: "Frequency (H)", value: "50" },
+          { label: "Fan Size", value: "150 MM" },
+          { label: "Cutout Size", value: "6 INCH" },
+        ],
     features: [
       "Rust Proof Body And Blades",
       "100% Copper Winding",
