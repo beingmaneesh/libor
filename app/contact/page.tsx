@@ -89,9 +89,9 @@ export default function ContactPage() {
                     <span className="block text-xs font-bold uppercase tracking-[0.2em] text-navy/40">
                       Address
                     </span>
-                    {/* <p className="mt-1.5 text-sm font-bold text-navy">
+                    <p className="mt-1.5 text-sm font-bold text-navy">
                       {BRAND.marketedBy.name}
-                    </p> */}
+                    </p>
                     <p className="mt-1 max-w-xs text-sm leading-relaxed text-navy/60">
                       {BRAND.marketedBy.address}
                     </p>
@@ -110,15 +110,14 @@ export default function ContactPage() {
 
             <Reveal delay={0.2}>
               <div className="grain relative overflow-hidden rounded-3xl bg-green-deep p-8 text-white">
-                <p className="text-eyebrow text-white/50">Return · Reward · Recycle</p>
+                <p className="text-eyebrow text-white/50">EVERYDAY CHOICES. LASTING IMPACT.</p>
                 <p className="mt-4 text-lg font-bold leading-snug">
-                  Return the packaging of any LIBOR product to an authorized
-                  dealer and earn ₹20 — every pack re-enters the loop instead of
-                  a landfill.
+                 FOR TODAY. FOR TOMORROW. FOR EVERY GENERATION.
+
                 </p>
                 <p className="mt-3 text-sm text-white/60">
-                  Mention &ldquo;Return &amp; Earn&rdquo; in your message and
-                  we&rsquo;ll point you to the nearest authorized dealer.
+                
+Everyday choices have extraordinary power. From the products we bring into our homes to the energy we use, each responsible decision helps build a cleaner, brighter future for the generations to come.
                 </p>
               </div>
             </Reveal>

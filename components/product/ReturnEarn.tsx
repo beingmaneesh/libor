@@ -7,7 +7,7 @@ const STEPS = [
   {
     n: "01",
     t: "Return",
-    b: "Bring the packaging of any LIBOR product to an authorized LIBOR dealer.",
+    b: "Bring the original packaging of any LIBOR product to an authorized LIBOR dealer.",
   },
   {
     n: "02",
@@ -47,20 +47,24 @@ export function ReturnEarn() {
             <Reveal>
               <p className="text-eyebrow text-green">Sustainability Initiative</p>
               <h2 className="text-display mt-6 text-3xl sm:text-4xl md:text-5xl">
-                Return &amp; Earn{" "}
-                <span className="serif-accent text-green">₹20.</span>
+               Return. Reward. Recycle.
               </h2>
               <p className="mt-6 max-w-md text-base leading-relaxed text-white/70">
-                Every LIBOR product is designed to come full circle.{" "}
+
+
+              At LIBOR, we believe our responsibility doesn&apos;t end when a product is sold. Every year, thousands of product packages are thrown away after installation, creating avoidable waste.  
+
+ 
                 <strong className="font-semibold text-white">
-                  Return the packaging of any LIBOR product to an authorized
-                  LIBOR dealer and get ₹20 back
-                </strong>{" "}
-                — packaging that would have been waste becomes raw material for
-                tomorrow&rsquo;s products. That&rsquo;s how, one pack at a time,
-                we&rsquo;re{" "}
+               Through our Return & Earn initiative, we invite customers to return the original LIBOR packaging to any authorized LIBOR dealer instead of discarding it.
+                </strong> 
+                
+
+                As a token of appreciation, we reward every eligible return with ₹20. The collected packaging is then responsibly recycled, helping reduce waste and conserve valuable resources. Together, every returned package brings us one step closer to a cleaner environment and a stronger circular economy—because small actions today 
+
+
                 <strong className="font-semibold text-green">
-                  building a circular economy.
+                create a better tomorrow.
                 </strong>
               </p>
             </Reveal>
