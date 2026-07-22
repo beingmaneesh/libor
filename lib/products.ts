@@ -152,7 +152,7 @@ export const PRODUCTS: Product[] = [
     tagline: "Two fronts. One quiet motor.",
     description:
       "A compact, high-speed ventilation fan designed for use in bathrooms, kitchens, or small office spaces. It features strong suction capability to help expel odors, smoke, moisture, and fumes, maintaining fresh air circulation. The design emphasizes quiet operation.",
-    image: "/images/products/casa-photo.png",
+    image: "/images/products/casa-all.png",
     sheet: "/images/products/casa.png",
     isi: false,
 
