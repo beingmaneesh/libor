@@ -9,29 +9,41 @@ const FIELD =
 
 export function ContactForm({ defaultTopic = "general" }: { defaultTopic?: string }) {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [topic, setTopic] = useState(defaultTopic);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (sending) return;
+    setError(null);
+    setSending(true);
+
     const data = new FormData(e.currentTarget);
-    const subject =
-      topic === "dealer"
-        ? "Dealer / Partnership Enquiry — LIBOR India"
-        : topic === "product"
-          ? "Kamet Product Enquiry — LIBOR India"
-          : "Enquiry — LIBOR India";
-    const body = [
-      `Name: ${data.get("name")}`,
-      `Email: ${data.get("email")}`,
-      `Phone: ${data.get("phone") || "—"}`,
-      `City: ${data.get("city") || "—"}`,
-      "",
-      `${data.get("message")}`,
-    ].join("\n");
-    window.location.href = `mailto:${BRAND.email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    const payload = {
+      name: String(data.get("name") || ""),
+      email: String(data.get("email") || ""),
+      phone: String(data.get("phone") || ""),
+      city: String(data.get("city") || ""),
+      message: String(data.get("message") || ""),
+      company: String(data.get("company") || ""), // honeypot
+      topic,
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(json.error || "Something went wrong.");
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -52,11 +64,11 @@ export function ContactForm({ defaultTopic = "general" }: { defaultTopic?: strin
               </svg>
             </span>
             <h3 className="mt-6 text-2xl font-bold tracking-tight text-navy">
-              Your email is on its way.
+              Message sent. Thank you.
             </h3>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-navy/55">
-              We&rsquo;ve opened your mail client with everything pre-filled.
-              If it didn&rsquo;t open, write to us directly at{" "}
+              We&rsquo;ve received your message and will get back to you,
+              usually within a working day. You can also reach us directly at{" "}
               <a href={`mailto:${BRAND.email}`} className="font-bold text-blue underline-offset-2 hover:underline">
                 {BRAND.email}
               </a>
@@ -137,14 +149,35 @@ export function ContactForm({ defaultTopic = "general" }: { defaultTopic?: strin
                 className={`${FIELD} resize-none`}
               />
             </div>
+
+            {/* honeypot — hidden from users, catches bots */}
+            <div aria-hidden="true" className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden">
+              <label htmlFor="cf-company">Company</label>
+              <input id="cf-company" name="company" tabIndex={-1} autoComplete="off" />
+            </div>
+
+            {error && (
+              <p role="alert" className="rounded-2xl border border-red/25 bg-red/5 px-5 py-3 text-sm font-semibold text-red">
+                {error}
+              </p>
+            )}
+
             <button
               type="submit"
-              className="group inline-flex items-center gap-3 rounded-full bg-red px-8 py-4 text-sm font-bold text-white shadow-[0_10px_34px_-12px_rgba(241,39,42,0.55)] transition-colors hover:bg-[#d31d20]"
+              disabled={sending}
+              className="group inline-flex items-center gap-3 rounded-full bg-red px-8 py-4 text-sm font-bold text-white shadow-[0_10px_34px_-12px_rgba(241,39,42,0.55)] transition-colors hover:bg-[#d31d20] disabled:cursor-not-allowed disabled:opacity-70"
             >
-              Send Message
-              <svg aria-hidden="true" viewBox="0 0 16 16" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M1 8h13M9 3l5 5-5 5" />
-              </svg>
+              {sending ? "Sending…" : "Send Message"}
+              {sending ? (
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 animate-spin" fill="none">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeOpacity="0.3" strokeWidth="3" />
+                  <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                </svg>
+              ) : (
+                <svg aria-hidden="true" viewBox="0 0 16 16" className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M1 8h13M9 3l5 5-5 5" />
+                </svg>
+              )}
             </button>
           </motion.form>
         )}
