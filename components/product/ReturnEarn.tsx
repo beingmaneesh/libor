@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { CTA } from "@/components/ui/Button";
-import ecosystem from "@/public/images/hero/future-of-india.png";
+import ecosystem from "@/public/images/hero/wfuture-of-india.png";
 
 const STEPS = [
   {

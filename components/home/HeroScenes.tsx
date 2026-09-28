@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
-import futureOfIndia from "@/public/images/hero/future-of-india.jpg";
+import futureOfIndia from "@/public/images/hero/wfuture-of-india.jpg";
 import circularEcosystem from "@/public/images/hero/circular-ecosystem.jpg";
 import circularElements from "@/public/images/hero/circular-elements.png";
 import responsibilityScene from "@/public/images/hero/banner1.jpg";
@@ -175,7 +175,7 @@ export function GenerationsScene() {
   poster={genarationScene.src}
   className="absolute inset-0 h-full w-full object-cover"
 >
-  <source src="/videos/hero.mp4"  type="video/mp4" />
+  <source src="/videos/whero.mp4"  type="video/mp4" />
 </video>
 
 

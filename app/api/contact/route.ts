@@ -79,7 +79,8 @@ export async function POST(req: Request) {
     auth: { user, pass },
   });
 
-  const subject = TOPIC_SUBJECT[topic] ?? TOPIC_SUBJECT.general;
+  // include the sender's name so it reads like a real enquiry, not a template
+  const subject = `${TOPIC_SUBJECT[topic] ?? TOPIC_SUBJECT.general} — ${name}`;
   const lines = [
     `Name: ${name}`,
     `Email: ${email}`,
@@ -106,12 +107,16 @@ export async function POST(req: Request) {
 
   try {
     await transporter.sendMail({
-      from: `"LIBOR Website" <${user}>`,
+      // From must be the authenticated Gmail account so Gmail's DKIM signs it
+      from: `"LIBOR India" <${user}>`,
       to,
       replyTo: `"${name}" <${email}>`,
       subject,
       text: lines,
       html,
+      // align the SMTP return-path with the signing domain (helps SPF/DMARC)
+      envelope: { from: user, to },
+      headers: { "X-Contact-Form": "liborindia.com" },
     });
     return NextResponse.json({ ok: true });
   } catch (err) {
